@@ -5,14 +5,11 @@ import java.util.Scanner;
 
 import static com.company.Main.mainMenu;
 
-public class Car {
+public class Car extends Vehicle{
     private Scanner input = new Scanner(System.in);
-    private String make;
-    private int year;
     private String color;
     private double price;
     private boolean automatic;
-    private String model;
     private int speed = 0;
     private int gas = 100;
 
@@ -23,14 +20,11 @@ public class Car {
         setGas(100);
     }
 
-    public String getMake() {
-        return make;
-    }
 
     public void setMake() {
         System.out.println("What is the make of the car you would like make?");
         try{
-            make = input.nextLine();
+            super.setMake(input.nextLine());
         }catch (InputMismatchException ime){
             input.nextLine();
             System.out.println("Please enter the name of the make");
@@ -38,14 +32,10 @@ public class Car {
         }
     }
 
-    public int getYear() {
-        return year;
-    }
-
     public void setYear() {
         System.out.println("What is the year of the car you would like make?");
         try{
-            year = input.nextInt();
+            super.setYear(input.nextInt());
         }catch (InputMismatchException ime){
             input.nextInt();
             System.out.println("Please enter a number for the year");
@@ -54,14 +44,10 @@ public class Car {
 
     }
 
-    public String getModel() {
-        return model;
-    }
-
     public void setModel() {
         System.out.println("What is the model of the car you would like make?");
         try{
-            model = input.nextLine();
+            super.setModel(input.nextLine());
         }catch (InputMismatchException ime){
             input.nextLine();
             System.out.println("Please enter the name of the model");
@@ -135,5 +121,12 @@ public class Car {
 
             System.out.println("The "+ car.getMake()+ " "+car.getModel()+ " is going "+ car.getSpeed()+ " MPH"+ " it has "+ car.getGas()+ "% of its gas left");
         }
+        mainMenu.menu(car);
+    }
+
+    public void addGas(Car car){
+        car.setGas(100);
+        System.out.println(car.getMake()+ " "+car.getModel()+" has a full gas tank");
+        mainMenu.menu(car);
     }
 }

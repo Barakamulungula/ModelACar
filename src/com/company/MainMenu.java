@@ -15,7 +15,7 @@ public class MainMenu {
 
     public void menu(Car car){
 
-        System.out.println("What would you like to do with the "+ car.getMake() + " " + car.getModel()+ "?\n" );
+        System.out.println("\nWhat would you like to do with the "+ car.getMake() + " " + car.getModel()+ "?" );
         System.out.println("1. Accelerate \n2. Decelerate \n3. Fill up with gas\n4. Exit");
         try{
             switch (input.nextInt()){
@@ -29,6 +29,7 @@ public class MainMenu {
                     break;
                 case 3:
                     //Fill up with gas
+                    car.addGas(car);
                     break;
                 case 4:
                     //Exit
