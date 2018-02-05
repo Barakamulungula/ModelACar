@@ -2,11 +2,11 @@ package com.company;
 
 public class Main {
 
+    public static MainMenu mainMenu;
     public static void main(String[] args) {
 	// write your code here
-
-        BuyACar car = new BuyACar();
-        car.Start();
+        mainMenu = new MainMenu();
+        mainMenu.creatorCar();
 
     }
 }
