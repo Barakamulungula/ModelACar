@@ -1,6 +1,6 @@
 package com.company;
 
-public class Vehicle {
+public abstract class Vehicle {
     private int year;
     private String make;
     private String model;
@@ -39,7 +39,7 @@ public class Vehicle {
     }
 
     public void getCarInfo() {
-        System.out.println("The current car is a "+ getMake() + " " + getModel());
+        System.out.println("The current car is a "+getYear()+" "+ getMake() + " " + getModel());
     }
 
 }

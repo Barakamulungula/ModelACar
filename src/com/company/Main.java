@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         mainMenu = new MainMenu();
-        mainMenu.creatorCar();
+        mainMenu.createCar();
 
     }
 }

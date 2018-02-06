@@ -7,19 +7,24 @@ import static com.company.Main.mainMenu;
 
 public class Car extends Vehicle{
     private Scanner input = new Scanner(System.in);
-    private String color;
     private double price;
-    private boolean automatic;
     private int speed = 0;
     private int gas = 100;
 
     public Car() {
         setMake();
         setModel();
+        setYear();
         setSpeed(0);
         setGas(100);
     }
 
+    public Car(int year, String make, String model, double price, int speed, int gas) {
+        super(year, make, model);
+        this.price = price;
+        this.speed = speed;
+        this.gas = gas;
+    }
 
     public void setMake() {
         System.out.println("What is the make of the car you would like make?");
@@ -37,7 +42,7 @@ public class Car extends Vehicle{
         try{
             super.setYear(input.nextInt());
         }catch (InputMismatchException ime){
-            input.nextInt();
+            input.nextLine();
             System.out.println("Please enter a number for the year");
             setYear();
         }
@@ -54,29 +59,12 @@ public class Car extends Vehicle{
             setModel();
         }
     }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
     public double getPrice() {
         return price;
     }
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public boolean isAutomatic() {
-        return automatic;
-    }
-
-    public void setAutomatic(boolean automatic) {
-        this.automatic = automatic;
     }
 
     public int getSpeed() {
@@ -96,7 +84,7 @@ public class Car extends Vehicle{
     }
 
     public void getCarInfo() {
-        System.out.println("The current car is a "+ getMake() + " " + getModel()+". It's going "+getSpeed()+" MPH and has "+getGas()+"% gas left");
+        System.out.println("The current car is a "+getYear()+" " + getMake() + " " + getModel()+". It's going "+getSpeed()+" MPH and has "+getGas()+"% gas left");
     }
 
     public void driveCar(Car car){
@@ -104,10 +92,16 @@ public class Car extends Vehicle{
             //Get current gas
             //Get current speed
 
-            car.setSpeed(car.getSpeed()+1);
-            car.setGas(car.getGas()-1);
+            if(car.getGas() > 0){
+                car.setSpeed(car.getSpeed()+1);
+                car.setGas(car.getGas()-1);
+            }
+            else {
+                car.setSpeed(0);
+                break;
+            }
 
-            System.out.println("The "+ car.getMake()+ " "+car.getModel()+ " is going "+ car.getSpeed()+ " MPH"+ " it has "+ car.getGas()+ "% of its gas left");
+            System.out.println("The "+car.getYear()+ " " +car.getMake()+ " "+car.getModel()+ " is going "+ car.getSpeed()+ " MPH"+ " it has "+ car.getGas()+ "% of its gas left");
         }
 
         mainMenu.menu(car);
@@ -116,17 +110,24 @@ public class Car extends Vehicle{
 
     public void stopCar(Car car){
         for (int seconds = 5; seconds >= 0; seconds--){
-            car.setSpeed(car.getSpeed()-1);
-            car.setGas(car.getGas()-1);
+            if(car.getSpeed() > 1){
+                car.setSpeed(car.getSpeed()-1);
+                car.setGas(car.getGas()-1);
+            }
+            else {
+                car.setSpeed(0);
+                System.out.println("Your car has stopped. Current gas: "+car.getGas()+"%");
+                break;
+            }
 
-            System.out.println("The "+ car.getMake()+ " "+car.getModel()+ " is going "+ car.getSpeed()+ " MPH"+ " it has "+ car.getGas()+ "% of its gas left");
+            System.out.println("The "+ car.getYear()+" "+car.getMake()+ " "+car.getModel()+ " is going "+ car.getSpeed()+ " MPH"+ " it has "+ car.getGas()+ "% of its gas left");
         }
         mainMenu.menu(car);
     }
 
     public void addGas(Car car){
         car.setGas(100);
-        System.out.println(car.getMake()+ " "+car.getModel()+" has a full gas tank");
+        System.out.println(car.getYear()+" " +car.getMake()+ " "+car.getModel()+" has a full gas tank");
         mainMenu.menu(car);
     }
 }
